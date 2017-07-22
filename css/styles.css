@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css?family=Kaushan+Script|Righteous|Vidaloka");
+header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 100vw;
+  background: #011627; }
+  header h3 {
+    position: relative;
+    text-align: center;
+    margin: .3rem;
+    font-family: 'Righteous', Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    letter-spacing: .5rem; }
+  header ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: .3rem;
+    padding: 0;
+    list-style: none; }
+    header ul li {
+      margin: 0 1rem 0 1rem; }
+      header ul li a {
+        font-family: 'Kaushan Script', Courier New, Courier, monospace;
+        transition: 0.3s ease-in-out all; }
+      header ul li :hover {
+        color: #FF9F1C;
+        font-size: 1.333rem; }
+
+* {
+  box-sizing: border-box;
+  color: #FDFFFC;
+  text-decoration: none;
+  font-family: 'Vidaloka', 'Times New Roman', Times, serif; }
+
+body {
+  margin: 0;
+  background: #FDFFFC;
+  display: flex;
+  flex-flow: column nowrap; }
+
+article {
+  background: #2EC4B6;
+  flex-grow: 8; }
+
+/*# sourceMappingURL=styles.css.map */
