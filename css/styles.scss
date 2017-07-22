@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Righteous|Vidaloka');
+@import 'header';
+
+* {
+    box-sizing: border-box;
+    color: $baby-powder;
+    text-decoration: none;
+    font-family: 'Vidaloka', 'Times New Roman', Times, serif;
+}
+
+body {
+    margin: 0;
+    background: $baby-powder;
+    @include flex-column();
+}
+
+article {
+    background: $maximum-blue-green;
+    flex-grow: 8;
+}
