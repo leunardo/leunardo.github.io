@@ -11,10 +11,26 @@
 body {
     margin: 0;
     background: $baby-powder;
+    height: 100vh;
+    overflow: hidden;
+    flex-basis: auto;
     @include flex-column();
 }
 
-article {
+article {    
+    flex: 0.001;    
+    max-height: 0px;
+    transition: all 1s  cubic-bezier(0.54, 0.74, 0.34,-0.49);
+    * {
+        transition: opacity 1s ease-in-out;
+        opacity: 0;
+    }
+}
+
+#contact {
     background: $maximum-blue-green;
-    flex-grow: 8;
+}
+
+#about {
+    background: $rose-madder;
 }
