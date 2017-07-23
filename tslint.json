@@ -9,7 +9,8 @@
         "triple-equals": [true, "allow-undefined-check"],
         "indent": [true, "spaces", 4],
         "no-require-imports": true,
-        "quotemark": [true, "single"]
+        "quotemark": [true, "single"],
+        "curly": [true, "ignore-same-line"]
     },
     "rulesDirectory": []
 }
