@@ -10,16 +10,13 @@ function showAbout(): void {
 
     isAboutOpen = !isAboutOpen;
 
-    if (isAboutOpen) {
-        about.style.flexGrow = '5';
-        about.style.maxHeight = '100rem';
-    } else {
-        about.style.flexGrow = '0.001';
-        about.style.maxHeight = '0rem';
-    }
+    if (isAboutOpen)
+        about.className = 'article-opened';
+    else
+        about.className = '';
 
     children.forEach((c: HTMLElement) => {
-        c.style.opacity = isAboutOpen ? '1' : '0';
+        c.className = isAboutOpen ? 'full-opacity' : '';
     });
 }
 

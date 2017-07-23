@@ -10,16 +10,13 @@ function showContact(): void {
 
     isContactOpen = !isContactOpen;
 
-    if (isContactOpen) {
-        contact.style.flexGrow = '5';
-        contact.style.maxHeight = '100rem';
-    } else {
-        contact.style.flexGrow = '0.0001';
-        contact.style.maxHeight = '0rem';
-    }
+    if (isContactOpen)
+        contact.className = 'article-opened';
+    else
+        contact.className = '';
 
     children.forEach((c: HTMLElement) => {
-        c.style.opacity = isContactOpen ? '1' : '0';
+        c.className = isContactOpen ? 'full-opacity' : '';
     });
 }
 

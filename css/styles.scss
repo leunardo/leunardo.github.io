@@ -27,6 +27,15 @@ article {
     }
 }
 
+.full-opacity {
+    opacity: 1;
+}
+
+.article-opened {
+    flex-grow: 5;
+    max-height: 100rem;
+}
+
 #contact {
     background: $maximum-blue-green;
 }
