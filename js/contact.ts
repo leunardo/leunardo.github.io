@@ -1,4 +1,5 @@
 import { isAboutOpen, showAbout  } from './about';
+import { contactAnchor, converter, loadFile } from './main';
 
 const contact = document.getElementById('contact');
 let isContactOpen = false;
@@ -16,8 +17,17 @@ function showContact(): void {
         contact.className = '';
 
     children.forEach((c: HTMLElement) => {
-        c.className = isContactOpen ? 'full-opacity' : '';
+        c.className = isContactOpen ? 'full-opacity' : 'no-opacity';
     });
 }
 
-export { showContact, isContactOpen };
+function loadContact(): void {
+    function callback(body: string): void {
+        const textFormatted = converter.makeHtml(body);
+        contact.innerHTML = textFormatted;
+    }
+    loadFile('./contact.md', callback);
+    contactAnchor.removeEventListener('click', loadContact);
+}
+
+export { loadContact, showContact, isContactOpen };
