@@ -20,7 +20,7 @@ function showAbout(): void {
     }
 
     children.forEach((c: HTMLElement) => {
-        c.style.opacity = isAboutOpen ? '0' : '1';
+        c.style.opacity = isAboutOpen ? '1' : '0';
     });
 }
 

@@ -20,7 +20,7 @@ function showContact(): void {
     }
 
     children.forEach((c: HTMLElement) => {
-        c.style.opacity = isContactOpen ? '0' : '1';
+        c.style.opacity = isContactOpen ? '1' : '0';
     });
 }
 
