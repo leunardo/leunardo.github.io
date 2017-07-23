@@ -1,7 +1,7 @@
 import { isContactOpen, showContact} from './contact';
+import { aboutAnchor } from './main';
 
 const about = document.getElementById('about');
-const aboutAnchor = document.getElementById('about-anchor');
 let isAboutOpen = false;
 
 function showAbout(): void {
@@ -13,10 +13,10 @@ function showAbout(): void {
 
     if (isAboutOpen) {
         about.style.flexGrow = '5';
-        about.style.maxHeight = '9999px';
+        about.style.maxHeight = '100rem';
     } else {
         about.style.flexGrow = '0.001';
-        about.style.maxHeight = '0px';
+        about.style.maxHeight = '0rem';
     }
 
     children.forEach((c: HTMLElement) => {

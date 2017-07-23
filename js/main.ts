@@ -6,3 +6,5 @@ const aboutAnchor = document.getElementById('about-anchor');
 
 contactAnchor.addEventListener('click', showContact);
 aboutAnchor.addEventListener('click', showAbout);
+
+export { aboutAnchor, contactAnchor };
