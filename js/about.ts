@@ -1,5 +1,4 @@
 import { isContactOpen, showContact} from './contact';
-import { aboutAnchor } from './main';
 
 const about = document.getElementById('about');
 let isAboutOpen = false;
