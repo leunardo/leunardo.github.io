@@ -4,8 +4,6 @@ import { loadAbout, showAbout } from './about';
 import { loadContact, showContact } from './contact';
 
 function loadFile(file: string, callback: (body: string) => void) {
-    const rawFile = new XMLHttpRequest();
-    const text: string = 'e';
     get(file, (r) => {
         let body = '';
         r.on('data', (d): void => { body += d; });
