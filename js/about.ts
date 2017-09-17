@@ -1,24 +1,17 @@
-import { isContactOpen, showContact} from './contact';
-import { aboutAnchor, converter, loadFile } from './main';
+import { closeContact, isContactOpen} from './contact';
+import { aboutAnchor, converter, loadFile, openArticle, renderChildElements } from './main';
 
 const about = document.getElementById('about');
+const children: [HTMLElement] = [].slice.call(about.children);
 let isAboutOpen = false;
 
 function showAbout(): void {
-    const children = [].slice.call(about.children);
-
-    if (isContactOpen) showContact();
-
     isAboutOpen = !isAboutOpen;
+    openArticle(isAboutOpen, about);
 
-    if (isAboutOpen)
-        about.className = 'article-opened';
-    else
-        about.className = '';
+    if (isContactOpen) closeContact();
 
-    children.forEach((c: HTMLElement) => {
-        c.className = isAboutOpen ? 'full-opacity' : 'no-opacity';
-    });
+    renderChildElements(isAboutOpen, children);
 }
 
 function loadAbout(): void {
@@ -30,4 +23,10 @@ function loadAbout(): void {
     aboutAnchor.removeEventListener('click', loadAbout);
 }
 
-export { loadAbout, showAbout, isAboutOpen };
+function closeAbout() {
+    isAboutOpen = false;
+    about.className = '';
+    renderChildElements(isAboutOpen, children);
+}
+
+export { loadAbout, closeAbout, showAbout, isAboutOpen };
