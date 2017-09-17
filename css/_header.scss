@@ -5,6 +5,7 @@ header {
     @include flex-column();
     justify-content: center;
     width: 100vw; 
+    min-height: 125px;
     background: $maastricht-blue;
     transition: 1s ease-in;
     flex: 1;
