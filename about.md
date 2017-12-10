@@ -12,10 +12,10 @@ I'll list here some of things i'm interessed on:
 
 * functional programming
 * object-oriented programming
-* domain driven design
 * web development
 * .NET
 * play guitar
+* data science
 
 Hope we met ourselves soon!
 
