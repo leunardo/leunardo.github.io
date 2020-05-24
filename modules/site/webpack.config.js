@@ -1,12 +1,12 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackHarddiskPlugin = require("html-webpack-harddisk-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const dist = path.resolve(__dirname, "../../dist/site");
 
 module.exports = {
-    mode: "development",
     module: {
         rules: [
             {
@@ -19,17 +19,12 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
-    },
-    devServer: {
-        contentBase: dist,
-        compress: true,
-        port: 8080,
     },
     output: {
         path: dist,
@@ -38,6 +33,7 @@ module.exports = {
     entry: "./src/index.ts",
     plugins: [
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             title: "Site",
             filename: "index.html",
