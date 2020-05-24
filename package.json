@@ -1,0 +1,11 @@
+{
+  "name": "leonardoalves",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "deploy": "firebase deploy --only hosting",
+    "deploy:site": "firebase deploy --only hosting:site"
+  }
+}
