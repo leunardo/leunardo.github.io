@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "leonardoalves-blog"
+  },
+  "targets": {
+    "leonardoalves-blog": {
+      "hosting": {
+        "site": [
+          "site-leonardoalves"
+        ]
+      }
+    }
+  }
+}

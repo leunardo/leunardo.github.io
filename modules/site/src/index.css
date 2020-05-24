@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+} 
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header,
+footer {
+    flex: 1;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 20;
+}
+
+main > div {
+    display: flex;
+}
+
+app-lines {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+    margin-top: -15px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
