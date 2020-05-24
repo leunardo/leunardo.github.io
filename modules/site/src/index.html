@@ -5,56 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonardo Alves</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-    <!-- TODO: create css file and add into bundle generation -->
-    <style>
-        * {
-            box-sizing: border-box;
-        } 
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        body {
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header,
-        footer {
-            flex: 1;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex: 20;
-        }
-
-        main > div {
-            display: flex;
-        }
-
-        app-lines {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            z-index: -1;
-            margin-top: -15px;
-        }
-
-        footer {
-            display: flex;
-            justify-content: center;
-            font-family: 'Montserrat', sans-serif;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -63,10 +13,7 @@
 
     <main>
         <app-lines></app-lines>
-
-        <div>
-          <app-introduction></app-introduction>
-        </div>
+        <app-introduction></app-introduction>
     </main>
 
     <footer>
