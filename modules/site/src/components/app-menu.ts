@@ -37,6 +37,17 @@ export class AppMenu extends LitElement {
             50% { background-position:100% 50% }
             100% { background-position:0% 50% }
         }
+
+        @media screen and (max-width: 600px) {
+            ul {
+                flex-wrap: wrap;
+                padding: 0;
+                justify-content: center;
+            }
+            li {
+                font-size: 1rem;
+            }
+        }
     `;
 
     render() {

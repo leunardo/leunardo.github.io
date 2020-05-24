@@ -29,6 +29,21 @@ export class AppIntroduction extends LitElement {
         h1 {
             font-size: 5rem;
         }
+
+        @media screen and (max-width: 600px) {
+            :host {
+                margin-left: 20px;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            h3 {
+                font-size: 2rem;
+            }
+        }
     `;
 
     render() {
