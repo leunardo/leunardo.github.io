@@ -7,6 +7,10 @@ import { customElement, LitElement, html, css } from 'lit-element';
 export class AppLines extends LitElement {
 
     static styles = css`
+        svg {
+            height: 100%;
+            width: 100%;
+        }
         path {
             fill: none;
             stroke: #1a1a1a;
@@ -21,8 +25,8 @@ export class AppLines extends LitElement {
 
     private numberOfLines = 20;
 
-    private w = window.innerWidth;
-    private h = window.innerHeight;
+    private w = 1920;
+    private h = 1080;
 
     private counter = 0;
     private amplitude = 40; // pixel range from 0
@@ -58,8 +62,8 @@ export class AppLines extends LitElement {
     animLoop() {
         for (var i = 0; i < this.numberOfLines; i++) {
             const newPath = this.createPathString({
-                startX: 200,
-                startY: -10,
+                startX: this.w,
+                startY: -this.h,
                 endX: -(i * this.spreadDistance * 2),
                 endY: this.h,
                 point1X:  i * this.spreadDistance * 0.2,
