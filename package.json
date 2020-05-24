@@ -6,6 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "deploy": "firebase deploy --only hosting",
-    "deploy:site": "firebase deploy --only hosting:site"
+    "deploy:site": "npm run build:site && firebase deploy --only hosting:site",
+    "build:site": "npm run build --prefix ./modules/site"
   }
 }
