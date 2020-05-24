@@ -8,6 +8,7 @@ export class AppMenu extends LitElement {
         ul {
             display: flex;
             flex-direction: row;
+            margin: 0;
         }
         li {
             list-style: none;
