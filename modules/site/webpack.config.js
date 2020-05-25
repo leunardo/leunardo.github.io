@@ -1,4 +1,5 @@
 const path = require("path");
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackHarddiskPlugin = require("html-webpack-harddisk-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -34,13 +35,18 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
+        new CopyPlugin({
+            patterns: [
+              { from: './src/robots.txt' },
+            ],
+          }),
         new HtmlWebpackPlugin({
             title: "Site",
             filename: "index.html",
             template: "src/index.html",
             alwaysWriteToDisk: true,
             minify: false,
-            favicon: './src/favicon.ico'
+            favicon: './src/favicon.ico',
         }),
         new HtmlWebpackHarddiskPlugin({
             outputPath: dist,
