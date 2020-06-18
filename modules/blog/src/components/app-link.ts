@@ -10,7 +10,7 @@ export class AppLink extends navigator(LitElement) {
         return html`
             <a href="${this.href}" @click="${this.linkClick}">
                 <slot></slot>
-            </a>fc
+            </a>
         `
     }
 
