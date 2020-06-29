@@ -19,6 +19,10 @@ export class AppCodesample extends LitElement {
                 pre {
                     margin: 0 0 1em 0;
                 }
+
+                code {
+                    line-height: 1.3rem;
+                }
             `
         ]
     }
