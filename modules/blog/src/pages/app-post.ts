@@ -65,21 +65,38 @@ export class AppPost extends LitElement {
                 font-size: 2rem;
             }
 
+            @media screen and (max-width: 800px) {
+                .content {
+                    width: 80%;
+                }
+            }
+
+            @media screen and (max-width: 600px) {
+                .content {
+                    width: 90%;
+                }
+            }
+
         `;
     }
 
     firstUpdated() {
-        let db = (window as any).firebase.firestore();
+        const db = (window as any).firebase.firestore();
 
         const postsRef =  db.collection('posts');
         postsRef
             .doc(this.id)
             .get()
             .then(snapshot => {
-                const data = snapshot.data();
-                this.post = data;
-                this.performUpdate();
-            })
+                if (snapshot.exists) {
+                    const data = snapshot.data();
+                    this.post = data;
+                    this.performUpdate();
+                } else {
+                    window.history.pushState({}, null, 'not-found');
+                    window.dispatchEvent(new CustomEvent('route'));
+                }
+            });
     }
 
     render() {
