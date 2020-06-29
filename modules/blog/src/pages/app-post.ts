@@ -80,9 +80,9 @@ export class AppPost extends LitElement {
         `;
     }
 
-    performUpdate() {
+    performUpdate(refresh = true) {
         super.performUpdate();
-        if (this.id) {
+        if (this.id && refresh) {
             const db = (window as any).firebase.firestore();
     
             const postsRef =  db.collection('posts');
@@ -93,7 +93,7 @@ export class AppPost extends LitElement {
                     if (snapshot.exists) {
                         const data = snapshot.data();
                         this.post = data;
-                        this.performUpdate();
+                        this.performUpdate(false);
                     } else {
                         window.history.pushState({}, null, 'not-found');
                         window.dispatchEvent(new CustomEvent('route'));
