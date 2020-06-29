@@ -80,23 +80,26 @@ export class AppPost extends LitElement {
         `;
     }
 
-    firstUpdated() {
-        const db = (window as any).firebase.firestore();
-
-        const postsRef =  db.collection('posts');
-        postsRef
-            .doc(this.id)
-            .get()
-            .then(snapshot => {
-                if (snapshot.exists) {
-                    const data = snapshot.data();
-                    this.post = data;
-                    this.performUpdate();
-                } else {
-                    window.history.pushState({}, null, 'not-found');
-                    window.dispatchEvent(new CustomEvent('route'));
-                }
-            });
+    performUpdate() {
+        super.performUpdate();
+        if (this.id) {
+            const db = (window as any).firebase.firestore();
+    
+            const postsRef =  db.collection('posts');
+            postsRef
+                .doc(this.id)
+                .get()
+                .then(snapshot => {
+                    if (snapshot.exists) {
+                        const data = snapshot.data();
+                        this.post = data;
+                        this.performUpdate();
+                    } else {
+                        window.history.pushState({}, null, 'not-found');
+                        window.dispatchEvent(new CustomEvent('route'));
+                    }
+                });
+        }
     }
 
     render() {
