@@ -25,16 +25,19 @@ export class AppHome extends LitElement {
 
     }
 
-    constructor() {
-        super();
-        this.posts = [
-            {
-                href: 'post/2',
-                cover: 'https://image.freepik.com/vetores-gratis/fundo-abstrato-escuro-com-camadas-de-sobreposicao-luxo-dourado-reluz-pontos-decoracao-elemento-luxo_98702-350.jpg',
-                title: 'How is the home page.',
-                subtitle: 'This is just the subtitle.'
-            }
-        ]
+
+    firstUpdated() {
+        const db = (window as any).firebase.firestore();
+
+        const postsRef =  db.collection('posts-preview');
+        postsRef
+            .get()
+            .then(snapshots => {
+                snapshots.forEach(snapshot => {
+                    this.posts.push({...snapshot.data(), id: snapshot.id })
+                })
+                this.performUpdate();
+            });
     }
 
     render() {
@@ -48,8 +51,8 @@ export class AppHome extends LitElement {
     private renderPost(post) {
         return html`
             <app-card
-                href="${post.href}"
-                cover="${post.cover}">
+                href="post/${post.id}"
+                cover="posts/${post.id}/${post.coverPath}">
                 <h2 slot="title">${post.title}</h2>
                 <p slot="subtitle">${post.subtitle}</p>
             </app-card>
