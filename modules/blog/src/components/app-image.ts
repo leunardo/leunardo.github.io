@@ -14,7 +14,9 @@ export class AppImage extends LitElement {
 
             img {
                 max-width: 100%;
+                height: 100%;
                 width: fit-content;
+                background: gray;
             }
 
             :host([cover]) img {
@@ -24,6 +26,12 @@ export class AppImage extends LitElement {
                 object-position: center;
                 display: block;
                 margin: auto;
+            }
+
+            :host([fit-content]) img {
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
             }
         `
     }
