@@ -19,8 +19,21 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/i,
+                test: /index.css$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+            {
+                test: /highlight\.js.*\.css$/i,
+                use: [
+                    'to-string-loader', 
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: false,
+                            importLoaders: 0,
+                            sourceMap: false
+                        }
+                    }],
             },
         ],
     },
