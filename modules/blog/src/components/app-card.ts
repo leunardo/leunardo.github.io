@@ -1,6 +1,7 @@
 import { LitElement, customElement, html, css, property } from "lit-element";
 
 import './app-link';
+import './app-image';
 
 @customElement('app-card')
 export class AppCard extends LitElement {
@@ -18,9 +19,6 @@ export class AppCard extends LitElement {
             }
 
             .header {
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
                 display: block;
                 height: 200px;
                 width: 100%;
@@ -51,7 +49,7 @@ export class AppCard extends LitElement {
             ${ 
                 this.cover 
                     ? html`<app-link href="${this.href}">
-                        <span class="header" style="background-image: url(${this.cover})"></span>
+                        <app-image fit-content class="header" path="${this.cover}"></app-image>
                     </app-link>` 
                     : ''
             }
