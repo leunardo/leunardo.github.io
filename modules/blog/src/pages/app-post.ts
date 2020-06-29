@@ -5,6 +5,7 @@ import '../components/app-link';
 import '../components/app-card';
 import '../components/app-codesample';
 import '../components/app-quote';
+import '../components/app-image';
 
 @customElement('app-post')
 export class AppPost extends LitElement {
@@ -14,20 +15,11 @@ export class AppPost extends LitElement {
         article: string;
         title: string;
         subtitle: string;
-        cover: string;
+        coverPath: string;
     };
 
     static get styles() {
         return css`
-            .cover {
-                width: 100%;
-                height: 50vh;
-                object-fit: cover;
-                object-position: center;
-                display: block;
-                margin: auto;
-            }
-
             .content {
                 width: 60%;
                 margin-left: auto;
@@ -96,15 +88,12 @@ export class AppPost extends LitElement {
                 <header>
                     <h1 class="content title">${this.post?.title}</h1>
                     <h5 class="content subtitle">${this.post?.subtitle}</h5>
-                    <img class="cover" src="${this.post?.cover}">
+                    ${ this.post?.coverPath && html`<app-image cover path="posts/${this.id}/${this.post.coverPath}"></app-image>` }
                 </header>
 
                 ${unsafeHTML(this.post?.article)}
 
             </article>
-
-            <app-link href="/">Go to home</app-link>
-
         `
     }
 }
