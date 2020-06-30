@@ -30,7 +30,7 @@ export class AppFooter extends LitElement {
                 margin-left: 50px;
             }
 
-            .links app-link {
+            .links .link {
                 font-weight: 300;
             }
 
@@ -44,7 +44,8 @@ export class AppFooter extends LitElement {
                 margin: 0;
             }
 
-            app-link {
+            .link {
+                color: white;
                 text-decoration: underline;
             }
         `
@@ -60,8 +61,9 @@ export class AppFooter extends LitElement {
                     </div>
                     <div class="links">
                         <b>Links</b>
-                        <app-link href="https://leonardoalves.dev">About me</app-link>
-                        <app-link href="/">Home</app-link>
+                        <a class="link" href="https://leonardoalves.dev">About me</a>
+                        <a class="link" href="mailto://leo@leonardoalves.dev">Contact</a>
+                        <app-link class="link" href="/">Home</app-link>
                     </div>
                 </div>
                 <p class="copyright">${new Date().getFullYear()}  - Leonardo de Melo Alves. All rights reserved.</p>
