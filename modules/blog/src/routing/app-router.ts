@@ -1,9 +1,11 @@
-import { LitElement, html, customElement, property } from 'lit-element';
+import { LitElement, html, customElement, property, css } from 'lit-element';
 import { router } from 'lit-element-router';
 import './app-outlet';
 
 import '../pages/app-home';
 import '../pages/app-post';
+import '../components/app-header';
+import '../components/app-footer';
 
 @customElement('app-router')
 export class AppRouter extends router(LitElement) {
@@ -12,6 +14,20 @@ export class AppRouter extends router(LitElement) {
     @property() params: any = {};
     @property() query = {};
     @property() data = {};
+
+    static get styles() {
+        return css`    
+            :host {
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+            }   
+
+            app-outlet {
+                flex: 20;
+            }
+        `
+    }
     
 
     static get routes() {
@@ -35,26 +51,20 @@ export class AppRouter extends router(LitElement) {
         this.route = route;
         this.params = params;
         this.query = query;
-        console.log(
-`route=${route}
-params=${JSON.stringify(params)}
-query=${JSON.stringify(query)},
-data=${JSON.stringify(data)}
-`)
     }
 
 
     render() {
         return html`
-            <!-- <app-link href="/post/2">ssss<app-link> -->
-            <h1>Blog Leonardo Alves</h1>
-            
+            <app-header></app-header>
 
             <app-outlet active-route="${this.route}">
                 <app-home route="home"></app-home>
                 <app-post route="post" .id=${this.params.id}></app-post>
                 <h1 route="not-found">Not found!</h1>
             </app-outlet>
+
+            <app-footer></app-footer>
         `;
     }
 
