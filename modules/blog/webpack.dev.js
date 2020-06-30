@@ -10,6 +10,9 @@ module.exports = merge(config, {
         contentBase: dist,
         compress: true,
         port: 8080,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+            '/__/firebase': 'http://localhost:5000'
+        }
     },
 });
