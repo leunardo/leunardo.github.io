@@ -7,6 +7,9 @@
       "hosting": {
         "site": [
           "site-leonardoalves"
+        ],
+        "blog": [
+          "blog-leonardoalves"
         ]
       }
     }
