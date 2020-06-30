@@ -5,7 +5,7 @@ const HtmlWebpackHarddiskPlugin = require("html-webpack-harddisk-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const dist = path.resolve(__dirname, "../../dist/site");
+const dist = path.resolve(__dirname, "../../dist/blog");
 
 module.exports = {
     module: {
@@ -54,7 +54,7 @@ module.exports = {
             ],
           }),
         new HtmlWebpackPlugin({
-            title: "Site",
+            title: "Blog",
             filename: "index.html",
             template: "src/index.html",
             alwaysWriteToDisk: true,
