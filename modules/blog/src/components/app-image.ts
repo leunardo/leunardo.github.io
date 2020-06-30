@@ -19,6 +19,12 @@ export class AppImage extends LitElement {
                 background: gray;
             }
 
+            .fallback {
+                max-width: 100%;
+                height: 100%;
+                background: gray;
+            }
+
             :host([cover]) img {
                 width: 100%;
                 height: 50vh;
@@ -48,7 +54,11 @@ export class AppImage extends LitElement {
 
     render() {
         return html`
-            <img src="${this.src}">
+            ${
+                this.src
+                    ? html`<img src="${this.src}">`
+                    : html`<div class="fallback"></div>`
+            }
         `
     }
 

@@ -1,5 +1,6 @@
-import { LitElement, customElement, html, property, css } from "lit-element";
+import { LitElement, customElement, html, property, css, unsafeCSS } from "lit-element";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import loading from '../assets/loading.svg';
 
 import '../components/app-link';
 import '../components/app-card';
@@ -17,6 +18,8 @@ export class AppPost extends LitElement {
         subtitle: string;
         coverPath: string;
     };
+
+    loading = true;
 
     static get styles() {
         return css`
@@ -84,12 +87,13 @@ export class AppPost extends LitElement {
         super.performUpdate();
         if (this.id && refresh) {
             const db = (window as any).firebase.firestore();
-    
+            
             const postsRef =  db.collection('posts');
             postsRef
                 .doc(this.id)
                 .get()
                 .then(snapshot => {
+                    this.loading = false;
                     if (snapshot.exists) {
                         const data = snapshot.data();
                         this.post = data;
@@ -104,16 +108,20 @@ export class AppPost extends LitElement {
 
     render() {
         return html`
-            <article>
-                <header>
-                    <h1 class="content title">${this.post?.title}</h1>
-                    <h5 class="content subtitle">${this.post?.subtitle}</h5>
-                    ${ this.post?.coverPath && html`<app-image cover path="posts/${this.id}/${this.post.coverPath}"></app-image>` }
-                </header>
+        ${
+            this.loading 
+                ? unsafeHTML(loading)
+                : html`
+                    <article>
+                        <header>
+                            <h1 class="content title">${this.post?.title}</h1>
+                            <h5 class="content subtitle">${this.post?.subtitle}</h5>
+                            ${ this.post?.coverPath && html`<app-image cover path="posts/${this.id}/${this.post.coverPath}"></app-image>` }
+                        </header>
 
-                ${unsafeHTML(this.post?.article)}
-
-            </article>
+                        ${unsafeHTML(this.post?.article)}
+                    </article>`
+        }
         `
     }
 }
