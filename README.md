@@ -1,11 +1,20 @@
 # leonardoalves.dev
-My personal website & blog (wip)
+My personal website & blog
 
 ![Site image](./site-demo.gif)
+[leonardoalves.dev](http://leonardoalves.dev)
+
+![Blog image](./blog-demo.png)
+[blog.leonardoalves.dev](http://blog.leonardoalves.dev)
+
 
 ## Tech stack
 
 The architecture is very modern and simple, made with micro-frontends in mind. I have used [LitElement](https://lit-element.polymer-project.org/) which is a javascript framework to create fast and lightweight [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). The language used is typescript and everything is bundled together using handcrafted [webpack](https://webpack.js.org/) files aiming small bundles and more customization.
+
+## Cloud Environment
+
+Both sites are hosted within firebase. App & Blog uses Firebase Hosting. Blog also uses Firestore to store posts and Firebase Storage for posts' images.
 
 ## Run & Deploy
 
@@ -16,7 +25,8 @@ The architecture is very modern and simple, made with micro-frontends in mind. I
 
 ### Blog
 
-- WIP
+- hot reload: `./modules/blog $ npm start`
+- build: `./ $ npm run build:blog`
 
 ## Contributing
 
