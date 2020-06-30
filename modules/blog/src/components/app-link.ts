@@ -1,10 +1,19 @@
-import { LitElement, customElement, html, property } from "lit-element";
+import { LitElement, customElement, html, property, css } from "lit-element";
 import { navigator } from 'lit-element-router';
 
 @customElement('app-link')
 export class AppLink extends navigator(LitElement) {
 
     @property() href = '';
+
+    static get styles() {
+        return css`
+            a {
+                color: inherit;
+                text-decoration: inherit;
+            }
+        `
+    }
 
     render() {
         return html`
