@@ -35,6 +35,12 @@ module.exports = {
                         }
                     }],
             },
+            {
+                test: /\.svg$/,
+                use: [
+                    'raw-loader'
+                ]
+            }
         ],
     },
     resolve: {
@@ -50,7 +56,7 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new CopyPlugin({
             patterns: [
-              { from: './src/robots.txt' },
+              { from: './src/robots.txt' }
             ],
           }),
         new HtmlWebpackPlugin({
