@@ -28,7 +28,15 @@ export class AppCodesample extends LitElement {
     }
 
     firstUpdated() {
-        import(`highlight.js/lib/languages/${this.language}`).then(module => {
+        // IMPORTANT: must add a new language in webpackInclude
+        // to be included in build, otherwise it's ignored.  
+        import(/*
+                webpackPrefetch: true,
+                webpackChunkName: "hljs-language",
+                webpackInclude: /javascript|python|csharp|plaintext/
+            */
+            `highlight.js/lib/languages/${this.language}`)
+        .then(module => {
             hljs.registerLanguage(this.language, module.default);
             const block = this.shadowRoot.querySelector('pre code');
             const [slotContent] = this.shadowRoot.querySelector('slot').assignedNodes();
