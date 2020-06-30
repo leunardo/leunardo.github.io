@@ -53,7 +53,7 @@ export class AppMenu extends LitElement {
     render() {
         return html`
             <ul>
-                <li><a href="#">Blog</a></li>
+                <li><a href="https://blog.leonardoalves.dev">Blog</a></li>
                 <li><a rel="noreferer noopener" href="https://www.linkedin.com/in/leunardo" target="_blank">LinkedIn</a></li>
                 <li><a rel="noreferer noopener" href="https://github.com/leunardo" target="_blank">GitHub</a></li>
                 <li><a rel="noreferer noopener" href="https://stackoverflow.com/users/8296744/leonardo-alves" target="_blank">Stack Overflow</a></li>
