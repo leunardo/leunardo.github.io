@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "highlight.js": "^10.1.1",
+    "highlight.js": "^10.1.2",
     "lit-element": "^2.3.1",
     "lit-element-router": "^2.0.3"
   },
