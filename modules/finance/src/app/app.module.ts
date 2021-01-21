@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -9,6 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SumPipe } from './shared/pipes/sum.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt);
+
 
 @NgModule({
   declarations: [
@@ -23,7 +29,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireAuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

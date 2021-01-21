@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   data$: Observable<any[]>;
   revenue$: BehaviorSubject<number> = new BehaviorSubject(0);
+  storage = localStorage;
   month$: BehaviorSubject<{ date: Date, representation: string, year: string, month: string }>;
 
   constructor(private firestore: AngularFirestore, private dialog: MatDialog) {
@@ -118,6 +119,13 @@ export class HomeComponent implements OnInit {
         this.reportsDoc.collection(`${year}`).doc(`${month}`).set({ revenue: result });
       }
     });
+  }
+
+  toggleVisibility(key: string) {
+    window.localStorage.setItem(
+      key,
+      Boolean(parseInt(localStorage.getItem(key) as string)) ? '0' : '1'
+    )
   }
 
   private loadData(date: Date): Observable<any> {

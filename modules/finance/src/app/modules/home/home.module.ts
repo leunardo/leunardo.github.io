@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReceiptFormComponent } from './components/receipt-form/receipt-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -36,6 +37,7 @@ import { EditRevenueComponent } from './components/edit-revenue/edit-revenue.com
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatTooltipModule,
     ReactiveFormsModule,
   ]
 })

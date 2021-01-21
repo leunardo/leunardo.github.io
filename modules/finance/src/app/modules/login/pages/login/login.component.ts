@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
 
   login(): void {
-    this.auth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider()).then(result => {
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(result => {
       if (result.user) {
         this.router.navigate(['']);
       }
