@@ -10,10 +10,7 @@ if (environment.production) {
 }
 
 function loadConfig(): any {
-  return environment.production ?
-    fetch('/__/firebase/init.json')
-      .then(response => response.json())
-    : Promise.resolve((environment as any).firebase);
+  return fetch('/__/firebase/init.json').then(response => response.json())
 }
 
 
