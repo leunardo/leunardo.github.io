@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { SumPipe } from './shared/pipes/sum.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
@@ -24,6 +25,7 @@ registerLocaleData(localePt);
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
     AngularFireModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
