@@ -34,7 +34,7 @@
             <mat-icon *ngIf="storage['revenue'] === '0'">visibility_off</mat-icon>
           </button>
         </p>
-        <p class="value" *ngIf="storage['revenue'] !== '0'">R$ 4000</p>
+        <p class="value" *ngIf="storage['revenue'] !== '0'">{{ revenue$|async|currency:'BRL' }}</p>
         <div *ngIf="storage['revenue'] === '0'" class="not-visible"></div>
       </div>
     </div>
@@ -51,7 +51,7 @@
             <mat-icon *ngIf="storage['expenses'] === '0'">visibility_off</mat-icon>
           </button>
         </p>
-        <p class="value" *ngIf="storage['expenses'] !== '0'">R$ 4000</p>
+        <p class="value" *ngIf="storage['expenses'] !== '0'">{{ bills|sum|currency:'BRL' }}</p>
         <div *ngIf="storage['expenses'] === '0'" class="not-visible"></div>
       </div>
     </div>
