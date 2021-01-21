@@ -1,0 +1,13 @@
+<h1>Recebimentos</h1>
+
+<form>
+  <mat-form-field>
+    <mat-label>Valor</mat-label>
+    <input type="number" [formControl]="control" matInput>
+  </mat-form-field>
+</form>
+
+<div mat-dialog-content>
+  <button mat-button color="primary" (click)="dialogRef.close(control.value)">Salvar</button>
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+</div>

@@ -1,0 +1,76 @@
+
+.balance-wrapper {
+  border: 1px solid gray;
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.balance {
+  text-transform: uppercase;
+
+}
+
+.big {
+  font-size: 2.5rem;
+}
+
+.big-2 {
+  font-size: 1.5rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.red {
+  color: rgb(170, 0, 0);
+}
+
+.va-middle {
+  vertical-align: middle;
+}
+
+.green {
+  color: green;
+}
+
+.edit-revenue {
+  transform: scale(.9);
+}
+
+.mat-list-base .mat-list-item .mat-line.bill-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bill-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-balance-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.not-found-btn {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+
+.fab-action {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}

@@ -1,0 +1,101 @@
+<ng-container *ngIf="data$ | async as bills; else notFound">
+
+  <h3 class="center">
+    <button mat-icon-button (click)="changeDate(-1)">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <span>{{ (month$ | async)?.representation }}</span>
+    <button mat-icon-button (click)="changeDate(1)">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </h3>
+
+  <div class="balance-wrapper">
+    <h3 class="balance bold">Balanço</h3>
+    <ng-container *ngIf="(revenue$|async) != undefined">
+      <ng-container *ngIf="revenue$ | async as revenue">
+        <p class="big bold"> {{ (revenue - (bills|sum))|currency:'BRL'  }} </p>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="balance-wrapper">
+    <div class="sub-balance-header">
+      <h3 class="balance bold m-0">
+        Recebimentos
+      </h3>
+      <p class="big-2 bold green m-0">
+        {{ revenue$|async|currency:'BRL' }}
+      </p>
+    </div>
+  </div>
+
+
+  <div class="balance-wrapper">
+    <div class="sub-balance-header">
+      <h3 class="balance bold">À pagar</h3>
+      <p class="big-2 bold red">{{ bills|sum|currency:'BRL' }}</p>
+    </div>
+
+    <mat-list>
+      <mat-list-item *ngFor="let bill of bills">
+        <mat-icon mat-list-icon>{{ bill.icon }}</mat-icon>
+
+        <div mat-line class="bill-line">
+          <div class="bill-details">
+            <span>{{ bill.description }}</span>
+            <span>{{ bill.value |currency:'BRL'}}</span>
+          </div>
+
+
+          <div>
+            <mat-icon mat-list-icon *ngIf="bill.until" class="va-middle">cached</mat-icon>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editBill(bill)">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+              <button mat-menu-item (click)="deleteBill(bill)">
+                <mat-icon>delete</mat-icon>
+                <span>Deletar</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+  </div>
+
+
+</ng-container>
+
+<ng-template #notFound>
+  <h2>Não foi encontrado um relatório para essa data.</h2>
+
+  <button class="not-found-btn" mat-button mat-flat-button color="primary" (click)="addNewReport()">Adicionar novo relatório</button>
+  <button class="not-found-btn" mat-button mat-flat-button color="accent" (click)="changeDate()">Voltar para o mês atual</button>
+
+</ng-template>
+
+<button mat-fab color="primary" class="fab-action" [matMenuTriggerFor]="menuFab">
+  <mat-icon>loupe</mat-icon>
+</button>
+<mat-menu #menuFab="matMenu">
+  <button mat-menu-item (click)="addBill()">
+    <mat-icon>add</mat-icon>
+    <span>Adicionar conta</span>
+  </button>
+  <button mat-menu-item (click)="addBill(true)">
+    <mat-icon>add</mat-icon>
+    <span>Adicionar conta recorrente</span>
+  </button>
+  <button mat-menu-item (click)="editRevenue()">
+    <mat-icon>monetization_on</mat-icon>
+    <span>Editar recebimento</span>
+  </button>
+</mat-menu>

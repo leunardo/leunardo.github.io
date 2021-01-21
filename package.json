@@ -8,7 +8,9 @@
     "deploy": "npm run build:site && npm run build:blog && firebase deploy --only hosting",
     "deploy:site": "npm run build:site && firebase deploy --only hosting:site",
     "deploy:blog": "npm run build:blog && firebase deploy --only hosting:blog",
+    "deploy:finance": "npm run build:finance && firebase deploy --only hosting:finance",
     "build:site": "npm run build --prefix ./modules/site",
-    "build:blog": "npm run build --prefix ./modules/blog"
+    "build:blog": "npm run build --prefix ./modules/blog",
+    "build:finance": "npm run build --prefix ./modules/finance"
   }
 }
