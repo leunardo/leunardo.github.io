@@ -29,8 +29,7 @@
         <input matEndDate  formControlName="until" placeholder="Final">
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-
+      <mat-date-range-picker touchUi #picker></mat-date-range-picker>
     </mat-form-field>
 
     <button mat-flat-button (click)="save()" color="primary">Salvar</button>

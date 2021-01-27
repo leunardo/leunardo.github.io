@@ -19,9 +19,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 import { EditRevenueComponent } from './components/edit-revenue/edit-revenue.component';
+import { MonthYearPickerComponent } from './components/month-year-picker/month-year-picker.component';
 
 @NgModule({
-  declarations: [HomeComponent, ReceiptFormComponent, DeleteConfirmationComponent, EditRevenueComponent],
+  declarations: [HomeComponent, ReceiptFormComponent, DeleteConfirmationComponent, EditRevenueComponent, MonthYearPickerComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { isMoment } from 'moment';
+import { isMoment, Moment } from 'moment';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map, mergeMap, pluck, tap } from 'rxjs/operators';
 import { ReportMonth } from 'src/app/shared/interfaces/report-month.interface';
@@ -23,25 +23,26 @@ export class HomeComponent implements OnInit {
   storage = localStorage;
   month$: BehaviorSubject<{ date: Date, representation: string, year: string, month: string }>;
 
+  private currentDate;
+
   constructor(private firestore: AngularFirestore, private dialog: MatDialog) {
-    const today = new Date();
+    this.currentDate = new Date();
     // load report relative to next month
-    today.setMonth(today.getMonth() + 1);
+    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
 
     this.month$ = new BehaviorSubject({
-      date: today,
-      representation: this.formatDate(today),
-      month: (today.getMonth() + 1).toString().padStart(2, '0'),
-      year: today.getFullYear().toString()
+      date: this.currentDate,
+      representation: this.formatDate(this.currentDate),
+      month: (this.currentDate.getMonth() + 1).toString().padStart(2, '0'),
+      year: this.currentDate.getFullYear().toString()
     });
-    this.data$ = this.loadData(today);
+    this.data$ = this.loadData(this.currentDate);
   }
 
   ngOnInit(): void { }
 
-  changeDate(nextMonth = 0): void {
-    const nextDate = nextMonth ? this.month$.value.date : new Date();
-    nextDate.setMonth(nextDate.getMonth() + nextMonth);
+  changeDate(momentDate: Moment | null): void {
+    const nextDate = isMoment(momentDate) ? momentDate.toDate() : new Date();
 
     console.log('Loading data for...', nextDate);
     this.data$ = this.loadData(nextDate);

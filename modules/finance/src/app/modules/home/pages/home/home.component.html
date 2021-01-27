@@ -1,13 +1,7 @@
 <ng-container *ngIf="data$ | async as bills; else notFound">
 
-  <h3 class="center">
-    <button mat-icon-button (click)="changeDate(-1)">
-      <mat-icon>navigate_before</mat-icon>
-    </button>
-    <span>{{ (month$ | async)?.representation }}</span>
-    <button mat-icon-button (click)="changeDate(1)">
-      <mat-icon>navigate_next</mat-icon>
-    </button>
+  <h3 class="center" *ngIf="month$ | async as dateInfo">
+    <app-month-year-picker [value]="dateInfo.date" (changed)="changeDate($event)"></app-month-year-picker>
   </h3>
 
 
@@ -106,7 +100,7 @@
   <h2>Não foi encontrado um relatório para essa data.</h2>
 
   <button class="not-found-btn" mat-button mat-flat-button color="primary" (click)="addNewReport()">Adicionar novo relatório</button>
-  <button class="not-found-btn" mat-button mat-flat-button color="accent" (click)="changeDate()">Voltar para o mês atual</button>
+  <button class="not-found-btn" mat-button mat-flat-button color="accent" (click)="changeDate(null)">Voltar para o mês atual</button>
 
 </ng-template>
 

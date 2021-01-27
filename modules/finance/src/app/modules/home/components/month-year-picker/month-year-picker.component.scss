@@ -1,0 +1,16 @@
+input {
+  text-align: center;
+  text-transform: capitalize;
+  border: none;
+  color: black;
+}
+
+button {
+  padding: 0;
+  margin-top: 4px;
+}
+
+.mat-input-element:disabled {
+  color: black;
+  font-size: 16px;
+}
