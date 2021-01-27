@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore, private dialog: MatDialog) {
     const today = new Date();
+    // load report relative to next month
+    today.setMonth(today.getMonth() + 1);
 
     this.month$ = new BehaviorSubject({
       date: today,
