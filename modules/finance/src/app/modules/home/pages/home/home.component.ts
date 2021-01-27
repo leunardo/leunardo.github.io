@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { isMoment } from 'moment';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map, mergeMap, pluck, tap } from 'rxjs/operators';
 import { ReportMonth } from 'src/app/shared/interfaces/report-month.interface';
@@ -123,11 +124,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  toggleVisibility(key: string) {
+  toggleVisibility(key: string): void {
     window.localStorage.setItem(
       key,
-      Boolean(parseInt(localStorage.getItem(key) as string)) ? '0' : '1'
-    )
+      Boolean(parseInt(localStorage.getItem(key) as string,  10)) ? '0' : '1'
+    );
   }
 
   private loadData(date: Date): Observable<any> {
@@ -182,6 +183,14 @@ export class HomeComponent implements OnInit {
 
   private saveBill(bill: any): void {
     const {month, year} = this.month$.value;
+
+    if (isMoment(bill.until)) {
+      bill.until = bill.until.toDate();
+    }
+
+    if (isMoment(bill.from)) {
+      bill.from = bill.from.toDate();
+    }
 
     if (bill.id) {
       if (bill.monthly) {
