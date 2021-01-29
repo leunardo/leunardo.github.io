@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map, mergeMap, pluck, tap } from 'rxjs/operators';
@@ -73,6 +74,16 @@ export class HomeComponent implements OnInit {
         this.saveBill(result);
       }
     });
+  }
+
+  onSwipeLeft(event: any): void {
+    const month = moment(this.month$.value.date).add(1, 'month');
+    this.changeDate(month);
+  }
+
+  onSwipeRight(event: any): void {
+    const month = moment(this.month$.value.date).add(-1, 'month');
+    this.changeDate(month);
   }
 
   deleteBill(bill: any): void {

@@ -1,4 +1,4 @@
-<ng-container *ngIf="data$ | async as bills; else notFound">
+<div *ngIf="data$ | async as bills; else notFound" (swipeLeft)="onSwipeLeft($event)" (swipeRight)="onSwipeRight($event)">
 
   <h3 class="center" *ngIf="month$ | async as dateInfo">
     <app-month-year-picker [value]="dateInfo.date" (changed)="changeDate($event)"></app-month-year-picker>
@@ -93,8 +93,7 @@
 
   </div>
 
-
-</ng-container>
+</div>
 
 <ng-template #notFound>
   <h2>Não foi encontrado um relatório para essa data.</h2>
