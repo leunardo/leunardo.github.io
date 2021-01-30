@@ -43,7 +43,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void { }
 
   changeDate(momentDate: Moment | null): void {
-    const nextDate = isMoment(momentDate) ? momentDate.toDate() : new Date();
+    let nextDate;
+
+    if (isMoment(momentDate)) {
+      nextDate = momentDate.toDate();
+    } else {
+      nextDate = new Date();
+      nextDate.setMonth(nextDate.getMonth() + 1);
+    }
 
     console.log('Loading data for...', nextDate);
     this.data$ = this.loadData(nextDate);
