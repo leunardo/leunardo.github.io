@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.ts",
   "scripts": {
-    "firebase": "firebase",
+    "firebase": "node node_modules/firebase-tools/lib/bin/firebase.js",
     "deploy": "npm run build:site && npm run build:blog && firebase deploy --only hosting",
     "deploy:site": "npm run build:site && firebase deploy --only hosting:site",
     "deploy:blog": "npm run build:blog && firebase deploy --only hosting:blog",
@@ -14,5 +14,7 @@
     "build:blog": "npm run build --prefix ./modules/blog",
     "build:finance": "npm run build --prefix ./modules/finance"
   },
-  "dependencies": {}
+  "dependencies": {
+    "firebase-tools": "^9.2.2"
+  }
 }
