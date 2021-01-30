@@ -1,5 +1,5 @@
 import { BrowserModule, HammerGestureConfig, HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { Injectable, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -16,11 +16,12 @@ import { registerLocaleData } from '@angular/common';
 
 registerLocaleData(localePt);
 
+@Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
       pinch: { enable: false },
       rotate: { enable: false }
-  } as any;
+  };
 }
 
 @NgModule({
@@ -33,7 +34,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     BrowserAnimationsModule,
     MatToolbarModule,
     AngularFireModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     HammerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
