@@ -3,15 +3,13 @@ My personal website & blog
 
 ![CI Finance status badge](https://github.com/leunardo/leunardo.github.io/workflows/CI%20Finance/badge.svg)
 
-## Site
-[leonardoalves.dev](https://leonardoalves.dev)
+| Name          | URL                                                               | Public
+|---------------|-------------------------------------------------------------------|-------
+| Site          | [leonardoalves.dev](https://leonardoalves.dev)                    | ✅
+| Blog          | [blog.leonardoalves.dev](https://blog.leonardoalves.dev)          | ✅  
+| Finance       | [finance.leonardoalves.dev](https://finance.leonardoalves.dev)    | ❎ 
 
-## Blog
-[blog.leonardoalves.dev](https://blog.leonardoalves.dev)
-
-## Finance
-[finance.leonardoalves.dev](https://finance.leonardoalves.dev)
-
+---
 
 ## Tech stack
 
