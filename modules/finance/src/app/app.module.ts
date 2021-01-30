@@ -1,4 +1,4 @@
-import { BrowserModule, HammerModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
@@ -16,6 +16,12 @@ import { registerLocaleData } from '@angular/common';
 
 registerLocaleData(localePt);
 
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+      pinch: { enable: false },
+      rotate: { enable: false }
+  } as any;
+}
 
 @NgModule({
   declarations: [
@@ -35,6 +41,7 @@ registerLocaleData(localePt);
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: MAT_DATE_LOCALE, useValue: 'pt' },
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
   ],
   bootstrap: [AppComponent]
 })
