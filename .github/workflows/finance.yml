@@ -32,3 +32,6 @@ jobs:
         with:
           name: Finance-Build
           path: dist/finance
+
+      - name: Deploy to firebase
+        run: npm run deploy:finance -- --token ${{ secrets.FIREBASE_TOKEN }}
