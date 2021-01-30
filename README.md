@@ -1,16 +1,23 @@
 # leonardoalves.dev
 My personal website & blog
 
-![Site image](./site-demo.gif)
-[leonardoalves.dev](http://leonardoalves.dev)
+![CI Finance status badge](https://github.com/leunardo/leunardo.github.io/workflows/CI%20Finance/badge.svg)
 
-![Blog image](./blog-demo.png)
-[blog.leonardoalves.dev](http://blog.leonardoalves.dev)
+## Site
+[leonardoalves.dev](https://leonardoalves.dev)
+
+## Blog
+[blog.leonardoalves.dev](https://blog.leonardoalves.dev)
+
+## Finance
+[finance.leonardoalves.dev](https://finance.leonardoalves.dev)
 
 
 ## Tech stack
 
 The architecture is very modern and simple, made with micro-frontends in mind. I have used [LitElement](https://lit-element.polymer-project.org/) which is a javascript framework to create fast and lightweight [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). The language used is typescript and everything is bundled together using handcrafted [webpack](https://webpack.js.org/) files aiming small bundles and more customization.
+
+For Finance I used Angular PWA.
 
 ## Cloud Environment
 
@@ -27,6 +34,10 @@ Both sites are hosted within firebase. App & Blog uses Firebase Hosting. Blog al
 
 - hot reload: `./modules/blog $ npm start`
 - build: `./ $ npm run build:blog`
+
+### Finance
+- hot reload: `./modules/finance $ npm start`
+
 
 ## Contributing
 
