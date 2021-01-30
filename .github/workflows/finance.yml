@@ -24,12 +24,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: install root dependencies
-        run: npm install
+      - name: install firebase
+        run: npm install -g firebase-tools
 
       - name: install dependencies
         run: npm install --prefix ./modules/finance
-
 
       - name: Build
         run: npm run build:finance
