@@ -13,5 +13,8 @@
     "build:site": "npm run build --prefix ./modules/site",
     "build:blog": "npm run build --prefix ./modules/blog",
     "build:finance": "npm run build --prefix ./modules/finance"
+  },
+  "dependencies": {
+    "firebase": "^8.2.5"
   }
 }
