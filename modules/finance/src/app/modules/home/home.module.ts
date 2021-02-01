@@ -17,12 +17,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatRippleModule } from '@angular/material/core';
+
 import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 import { EditRevenueComponent } from './components/edit-revenue/edit-revenue.component';
 import { MonthYearPickerComponent } from './components/month-year-picker/month-year-picker.component';
+import { BillsMenuComponent } from './components/bills-menu/bills-menu.component';
 
 @NgModule({
-  declarations: [HomeComponent, ReceiptFormComponent, DeleteConfirmationComponent, EditRevenueComponent, MonthYearPickerComponent],
+  declarations: [HomeComponent, ReceiptFormComponent, DeleteConfirmationComponent, EditRevenueComponent, MonthYearPickerComponent, BillsMenuComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -40,6 +44,8 @@ import { MonthYearPickerComponent } from './components/month-year-picker/month-y
     MatSelectModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    MatBottomSheetModule,
+    MatRippleModule
   ]
 })
 export class HomeModule { }

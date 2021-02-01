@@ -55,7 +55,7 @@
     <h2>Gastos</h2>
 
     <mat-list class="bills-list">
-      <mat-list-item *ngFor="let bill of bills">
+      <mat-list-item *ngFor="let bill of bills" matRipple (press)="openBottomSheet(bill)">
         <div mat-list-icon blue class="icon">
           <mat-icon>{{ bill.icon }}</mat-icon>
         </div>
@@ -72,20 +72,23 @@
               matTooltip="Essa conta é recorrente. Duração: {{ bill.from.toDate() |date:'shortDate' }} - {{ bill.until.toDate() |date:'shortDate' }}">
               cached
             </mat-icon>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
 
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="editBill(bill)">
-                <mat-icon>edit</mat-icon>
-                <span>Editar</span>
+            <ng-container *ngIf="isDesktop">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
               </button>
-              <button mat-menu-item (click)="deleteBill(bill)">
-                <mat-icon>delete</mat-icon>
-                <span>Deletar</span>
-              </button>
-            </mat-menu>
+
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="editBill(bill)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+                <button mat-menu-item (click)="deleteBill(bill)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Deletar</span>
+                </button>
+              </mat-menu>
+            </ng-container>
           </div>
         </div>
       </mat-list-item>

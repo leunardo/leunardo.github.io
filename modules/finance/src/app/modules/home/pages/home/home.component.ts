@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { isMoment, Moment } from 'moment';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map, mergeMap, pluck, tap } from 'rxjs/operators';
 import { ReportMonth } from 'src/app/shared/interfaces/report-month.interface';
+import { BillsMenuComponent } from '../../components/bills-menu/bills-menu.component';
 import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
 import { EditRevenueComponent } from '../../components/edit-revenue/edit-revenue.component';
 import { ReceiptFormComponent } from '../../components/receipt-form/receipt-form.component';
@@ -23,10 +25,15 @@ export class HomeComponent implements OnInit {
   revenue$: BehaviorSubject<number> = new BehaviorSubject(0);
   storage = localStorage;
   month$: BehaviorSubject<{ date: Date, representation: string, year: string, month: string }>;
+  isDesktop = false;
 
   private currentDate;
 
-  constructor(private firestore: AngularFirestore, private dialog: MatDialog) {
+  constructor(
+    private firestore: AngularFirestore,
+    private dialog: MatDialog,
+    private bottomSheet: MatBottomSheet
+  ) {
     this.currentDate = new Date();
     // load report relative to next month
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
@@ -40,7 +47,9 @@ export class HomeComponent implements OnInit {
     this.data$ = this.loadData(this.currentDate);
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.isDesktop = window.screen.availWidth >= 600;
+  }
 
   changeDate(momentDate: Moment | null): void {
     let nextDate;
@@ -79,6 +88,18 @@ export class HomeComponent implements OnInit {
     dialog.afterClosed().subscribe(result => {
       if (result) {
         this.saveBill(result);
+      }
+    });
+  }
+
+  openBottomSheet(bill: any): void {
+    const bottomSheetRef = this.bottomSheet.open(BillsMenuComponent);
+
+    bottomSheetRef.afterDismissed().subscribe(result => {
+      if (result === 'edit') {
+        this.editBill(bill);
+      } else if (result === 'delete') {
+        this.deleteBill(bill);
       }
     });
   }

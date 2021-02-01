@@ -20,7 +20,8 @@ registerLocaleData(localePt);
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = {
       pinch: { enable: false },
-      rotate: { enable: false }
+      rotate: { enable: false },
+      press: { enabled: true, time: 500 },
   };
 }
 
