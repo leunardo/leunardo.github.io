@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatRippleModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 import { EditRevenueComponent } from './components/edit-revenue/edit-revenue.component';
@@ -45,7 +46,8 @@ import { BillsMenuComponent } from './components/bills-menu/bills-menu.component
     MatTooltipModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
-    MatRippleModule
+    MatRippleModule,
+    MatAutocompleteModule
   ]
 })
 export class HomeModule { }

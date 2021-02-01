@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { AutoCompleteService } from 'src/app/shared/services/autocomplete.service';
 
 const CUSTOM_DATE_FORMAT = {
   parse: {
@@ -44,6 +46,8 @@ export class ReceiptFormComponent implements OnInit {
     'emoji_objects'
   ];
 
+  autocomplete$: Observable<string[]> = this.autoCompleteService.get();
+
   form = this.fb.group({
     value: [this.data.value],
     description: [this.data.description],
@@ -65,6 +69,7 @@ export class ReceiptFormComponent implements OnInit {
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ReceiptFormComponent>,
+    private autoCompleteService: AutoCompleteService
   ) { }
 
   save(): void {
