@@ -2,6 +2,13 @@
 
 <div mat-dialog-content>
   <form *ngIf="form" [formGroup]="form">
+
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <span matPrefix>R$ </span>
+      <input formControlName="value" type="number" matInput>
+    </mat-form-field>
+
     <mat-form-field>
       <mat-label>Descrição</mat-label>
       <input formControlName="description" matInput [matAutocomplete]="auto">
@@ -10,12 +17,6 @@
           {{option}}
         </mat-option>
       </mat-autocomplete>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Valor</mat-label>
-      <span matPrefix>R$ </span>
-      <input formControlName="value" type="number" matInput>
     </mat-form-field>
 
     <mat-form-field>
