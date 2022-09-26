@@ -15,6 +15,6 @@
     "build:finance": "npm run build --prefix ./modules/finance"
   },
   "dependencies": {
-    "firebase-tools": "^9.2.2"
+    "firebase-tools": "^9.23.3"
   }
 }
