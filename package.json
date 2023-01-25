@@ -1,11 +1,24 @@
 {
-  "name": "leonardoalves",
+  "name": "leunardo.github.io",
   "version": "2.0.0",
-  "description": "",
-  "private": true,
-  "main": "index.ts",
+  "description": "My personal website & blog",
+  "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "http-server -c-1 ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leunardo/leunardo.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leunardo/leunardo.github.io/issues"
+  },
+  "homepage": "https://github.com/leunardo/leunardo.github.io#readme",
   "dependencies": {
+    "http-server": "^14.1.1"
   }
 }
