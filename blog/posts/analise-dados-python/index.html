@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Leonardo Alves">
+    <meta name="description" content="Molhando a pontinha dos pés com dados">
+    <title>Leonardo Alves - Análise de dados Python</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="../../blog.css">
+    <link rel="stylesheet" href="../posts.css">
+    <link rel="stylesheet" href="/assets/monokai.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "BlogPosting",
+        "name": "Análise de dados com Python",
+        "headline": "Análise de dados com Python",
+        "author": {
+            "@type": "Person",
+            "name": "Leonardo Alves",
+            "url": "https://leonardoalves.dev"
+        },
+        "keywords": [
+            "python",
+            "data",
+            "data-analysis",
+            "pandas",
+            "matplotlib"
+        ],
+        "image": "media/cover.jpg",
+        "datePublished": "2017-12-13",
+        "description": "Molhando a pontinha dos pés com dados"
+    }
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <p><a href="/blog">Leonardo Alves blog</a></p>
+    </header>
+
+    <article>
+        <h1>Análise de dados com Python</h1>
+        <time datetime="2017-12-13">13 de Dezembro de 2017</time>
+        <main>
+            <img class="cover" src="media/cover.jpg" alt="Quatro pinguins no mar">
+
+            <blockquote>
+                <p>Data! Data! Data! I can't make bricks without clay!</p>
+            </blockquote>
+            <p class="cite">&mdash; Sir Arthur Conan Doyle</p>
+
+            <p> Analisar os dados é um passo essencial para que podemos entender o que está acontecendo
+                e também para decidirmos o que iremos fazer. Eles são abstratos na maioria das vezes, e a sua
+                interpretação
+                requer tempo, mas quando conseguimos retirar a essência, pegar o que os dados estão nos “dizendo”, então
+                aí nós
+                conseguimos ver que os dados são muito mais do que apenas dados. Porém, como eu faço pra ver além do que
+                está escrito na minha
+                tela?
+            </p>
+            <p> Hoje eu irei apontar alguns tópicos importantes ao meu ver sobre a parte de visualização
+                e análise,
+                que eu fui adquirindo com o tempo, e também mostrarei algumas partes de como se analisar o básico dos
+                dados
+                utilizando Python com bibliotecas científicas e de representações gráficas. </p>
+            <p> Nós teremos como dados para esse artigo, <strong>a temperatura média do solo dos países
+                    desde
+                    1750</strong>, que eu peguei diretamente do <a
+                    href="https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data"
+                    target="_blank">Berkeley Earth</a>.</p>
+
+            <p> Bom, por onde começar? Antes que você me diga: <i>“abrir um editor de texto, começar a
+                    importar as
+                    bibliotecas do Python e os dados em csv…”</i>, Ainda não! Primeiro vamos contextualizar: bom, os
+                nossos dados
+                são sobre temperaturas, então o que sabemos sobre temperatura? </p>
+            <ul>
+                <li>É medida em graus Celsius pelo Sistema Internacional;</li>
+                <li>Varia durante o dia;</li>
+                <li>Há diferenças grandes durante as estações (principalmente inverno e verão);</li>
+                <li>A cada dia que passa são criadas tecnologias mais precisas para prever o clima;</li>
+            </ul>
+            <p> Então, antes de irmos para os dados, já temos ideia de que a temperatura provavelmente
+                estará em
+                Celsius, e é interessante separar os dados por estações para podermos analisá-los um por um, e aí ter
+                mais
+                consistência, além de poder ver a variação de temperatura por estações. A variação durante o dia não é
+                realmente
+                importante para nós, já que temos a média, mas podemos considerar analisá-la caso os dados possuam
+                horário. </p>
+            <hr>
+            <p>Aqui está as bibliotecas que iremos utilizar:</p>
+
+            <pre>
+                <code data-language="python">
+#imports
+import pandas as pd # Pandas é uma biblioteca para analise de dados
+import matplotlib.pyplot as plt # Matplotlib para representação gráfica;
+import numpy as np # Numpy e Scipy para computação científica (utilizaremos para fazer a curva de pontos)
+from scipy.optimize import curve_fit
+from plot_erro import plor_erro
+                </code>
+            </pre>
+
+            <h2>Vamos visualizar a temperatura geral do solo brasileiro.</h2>
+
+            <pre>
+                <code data-language="python">data = pd.read_csv('./src/GlobalLandTemperaturesByCountry.csv')
+print(data.info())</code>
+            </pre>
+
+            <p>Teremos como resultado:</p>
+
+            <pre>
+                <code>
+PS C:&sol;dev&sol;temperatura-terra&gt;python 01.py
+&lt;class 'pandas.core.frame.DataFrame'&gt; Int64Index: 2164 entries, 77110 to 79289
+Data columns (total 4 columns):
+dt                              2164 non-null object
+AverageTemperature              2164 non-null float64
+AverageTemperatureUncertainty   2164 non-null float64
+Country                         2164 non-null object
+dtypes: float64(2), object(2)
+memory usage: 17.6+ MB
+None
+                </code>
+            </pre>
+            <p>Agora sabemos que os nossos dados possuem quatro colunas:</p>
+            <ul>
+                <li>dt;</li>
+                <li>AverageTemperature;</li>
+                <li>AverageTemperatureUncertainty;</li>
+                <li>Country;</li>
+            </ul>
+            <p>Onde <i>dt</i> é a data de quando foi feita a medição, <i>AverageTemperature</i> é a
+                média de
+                temperatura em si, <i>AverageTemperatureUncertainty</i> é a incerteza da medida, o qual será importante
+                para temos
+                uma noção de precisão, e <i>Country</i> onde é o país de onde foi medido.</p>
+            <p>Vamos agora filtrar para apenas dados do Brasil e então pegar 10 amostras:</p>
+
+            <pre>
+                <code data-language="python">
+data = pd.read_csv('./src/GlobalLandTemperaturesByCountry.csv')
+brasil = data.where(data.Country == 'Brazil')
+print(brasil.sample(10))
+                </code>
+            </pre>
+            <p>Saída:</p>
+            <pre>
+                <code>
+PS C:&sol;dev&sol;temperatura-terra&gt; python01.py
+         dt      AverageTemperature  AverageTemperatureUncertainty   Country
+224087  NaN                     NaN                            NaN       NaN
+250103  NaN                     NaN                            NaN       NaN
+205439  NaN                     NaN                            NaN       NaN
+70035   NaN                     NaN                            NaN       NaN
+193227  NaN                     NaN                            NaN       NaN
+518167  NaN                     NaN                            NaN       NaN
+501803  NaN                     NaN                            NaN       NaN
+537256  NaN                     NaN                            NaN       NaN
+556422  NaN                     NaN                            NaN       NaN
+479835  NaN                     NaN                            NaN       NaN
+                </code>
+            </pre>
+
+            <p>Opa! O que aconteceu aí? Como assim NaN?! Tá bugado isso aí meu!</p>
+            <p>Infelizmente, quando nós estamos a analisar os dados, eles não são sempre completos,
+                muitas vezes
+                eles virão com brancos e lacunas que comprometem a nossa análise, e isso acaba nos levando a tirar
+                conclusões
+                erradas. Um processo importante para conseguirmos ter mais confiança, é fazer a limpeza dos dados.</p>
+            <p>Como se trata de temperaturas, na minha opinião a melhor saída (e mais fácil) é
+                simplesmente deletar
+                esses registros vazios, porque não faz sentido nós tentarmos preencher os “buracos” dos dados com base
+                neles mesmos,
+                visto que ao tentar isso possivelmente acabaríamos tendo uma conclusão menos precisa do que teríamos se
+                simplesmente
+                ignorássemos esses dados vazios.</p>
+            <p>Então iremos dropar os registros vazios, com o comando <strong>brasil.dropna()</strong> e
+                vamos
+                continuar.</p>
+
+            <pre>
+                <code data-language="python">
+brasil.dt = [d.split('-')[0] for d in brasil.dt] # formata a data de yyyy-mm-dd para yyyy
+brasil_groupby_ano = brasil.groupby('dt')
+
+# preparar exibicao
+
+# converte o ano de string para int
+x = [int(dt[0]) for dt in brasil_groupby_ano.dt]
+
+# calcula a media das temperaturas em cada ano
+y = brasil_groupby_ano.AverageTemperature.mean()
+
+plt.scatter(x, y)
+plt.title('Temperatura media do Brasil desde 1800')
+plt.show()
+                </code>
+            </pre>
+
+            <p>E olha só o que conseguimos 😱:</p>
+
+            <img src="media/analise-dados-python-1.png" alt="Gráfico 'Temperatura média no Brasil desde 1800'.
+            Exibindo no eixo y a temperatura de 23.5 até 26 graus célsius.
+            No eixo x, os anos de 1825 até 2000. Vários pontos azuis são marcados exibindo uma certa
+            tendência de subida ao chegar nos anos 2000.">
+
+
+            <p>Olhando para este gráfico qualquer pessoa consegue notar que a temperatura está
+                aumentando. Seria
+                você, aquecimento global?</p>
+            <p>Não estou satisfeito. Vamos continuar. Que tal colocarmos uma linha que faz o trajeto
+                desses pontos
+                para confirmarmos que está aumentando a temperatura?</p>
+
+            <pre>
+                <code data-language="python">
+...
+# preparar exibicao
+
+# converte o ano de string para int
+x = [int(dt[0]) for dt in brasil_groupby_ano.dt]
+
+# calcula media das temperaturas em cada ano
+y = brasil_groupby_ano.AverageTemperature.mean()
+
+# media do erro no ano
+sigma = brasil_groupby_ano.AverageTemperatureUncertainty.mean()
+
+plt.scatter(x, y) # adiciona os pontos no grafico
+plt.title('Temperatura media do Brasil desde 1800')
+
+# efetua a exponenciacao do numero pelo
+# logaritmo natural + parametros de otimizacao
+def exponenciar(x, a, b, c):
+    return a * np.exp(-b * x) + c
+
+# ajuste de curvas dada a nossa funcao e os eixos
+popt, _ = curve_fit(exponenciar, x, y, p0=(1, 1e-6, 1), maxfev=4000, sigma=sigma)
+
+xx = np.linspace(1800, 2020) # cria numeros iguais distribuidos de 1800 ate 2020
+yy = exponenciar(xx, *popt) # yy = f(xx), adequados aos params de otimizacao
+
+# essa funcao exibe uma linha com um sombreado em volta, representando a margem de erro
+plot_erro(xx, yy, .05)
+
+plt.show()
+                </code>
+            </pre>
+
+            <p>Agora, baseando-se nos valores que conseguimos anteriormente, o código acima irá traçar
+                uma linha que
+                se ajusta aos valores. Infelizmente ficou complexo, e para nós não é importante saber o que cada linha
+                do código
+                faz, então irei ser mais conciso nessa parte. Caso você queira se aprofundar, deixarei o link para o
+                source desse
+                artigo com todos os códigos e uma explicação melhor em cima deles.</p>
+
+            <img src="media/analise-dados-python-2.png" alt="Gráfico 'Temperatura média no Brasil desde 1800'.
+            Exibindo no eixo y a temperatura de 23.5 até 26 graus célsius.
+            No eixo x, os anos de 1825 até 2000. Vários pontos azuis são marcados exibindo uma certa
+            tendência de subida ao chegar nos anos 2000.
+            É traçado uma linha verde, que representa a média e o desvio padrão da temperatura em determinada época.
+            É possível ver que a linha está subindo gradativamente ao passar dos anos.">
+
+            <p>Olha só 😎! Agora temos uma linha que representa o crescimento de temperatura ao longo
+                dos anos. O
+                verde mais claro seria a margem de erro, de 5% para mais ou para menos, como é dito no <a
+                    rel="noopener nofollow"
+                    href="https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data"
+                    target="_blank">source
+                    de onde peguei os dados.</a></p>
+
+            <p>A partir de agora, nós podemos dizer que a temperatura do solo brasileiro, em média,
+                aumentou 1,3°
+                Celsius em 200 anos com a nossa simples análise. Porém, aqui é só o começo. Eu mostrei apenas uma
+                pontinha do que
+                podemos fazer e a ideia do que precisamos para visualizar os dados de alguma coisa. Resumindo, o básico
+                é:</p>
+            <ul>
+                <li>Contextualizar, entender que tipo de dados estamos falando e pra que eles servem;</li>
+                <li><i>Brainstorming</i>, jogar várias ideias a cerca do contexto dos dados para termos ideias do que
+                    seria
+                    interessante analisar;</li>
+                <li>Observar os dados que temos inicialmente;</li>
+                <li>Limpar os dados;</li>
+                <li>Aplicar as ideias em cima dos dados e transformar isso em algo (de preferência graficamente)
+                    representável;</li>
+                <li>Chegar a conclusões;</li>
+            </ul>
+            <p>No início do artigo eu falei sobre separar as temperaturas por estações e etc, e isso é
+                muito
+                interessante e vale a pena fazer, porém como não quero me estender muito, deixo isso para uma próxima
+                conversa. Mas
+                deixo o convite pra você: que tal tentar levar isso como um <i>kickstart</i>? Boa sorte!</p>
+            <h2>Referências:</h2>
+            <ul>
+                <li><a target="_blank" rel="noopener nofollow"
+                        href="https://www.amazon.com.br/Data-Science-Scratch-Principles-Python-ebook/dp/B00W4DTP2A/ref=sr_1_1?s=digital-text&ie=UTF8&qid=1513189624&sr=1-1&keywords=data+science+from+scratch+first+principles+with+python">Data
+                        Science from Scratch: First Principles with Python — Joel Grus</a></li>
+                <li><a target="_blank" rel="noopener nofollow" href="http://www.numpy.org/">numpy.org</a></li>
+                <li><a target="_blank" rel="noopener nofollow" href="https://docs.scipy.org/">docs.scipy.org</a></li>
+                <li><a target="_blank" rel="noopener nofollow"
+                        href="https://matplotlib.org/contents.html">matplotlib.org</a></li>
+                <li><a target="_blank" rel="noopener nofollow"
+                        href="https://github.com/leunardo/medium-analise-dados">Código fonte:
+                        github.com/leunardo/medium-analise-dados</a></li>
+            </ul>
+    </article>
+    </main>
+
+    <script src="/assets/rainbow-custom.min.js"></script>
+</body>
+
+</html>

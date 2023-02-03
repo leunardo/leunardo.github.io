@@ -2,8 +2,10 @@
     --ivory: #DAD7CD;
     --g1: #A3B18A;
     --g2: #588157;
-    --g3: #3A5A40;
-    --g4: #344E41;
+    --g3: #2c4430;
+    --g4: #1b2a23;
+
+    --rounded-radius: 8px;
 }
 
 * {
@@ -11,7 +13,7 @@
 }
 
 a {
-    color: var(--g2);
+    color: var(--g3);
 }
 
 a:visited {
@@ -41,7 +43,7 @@ h1 {
 }
 
 p {
-    color: var(--g4);
+    color: #1b2a23;
 }
 
 .links {
@@ -60,6 +62,10 @@ p {
 .links li {
     list-style: none;
     font-size: 1.3rem;
+}
+
+li {
+    color: var(--g4);
 }
 
 @media screen and (max-width: 600px) {

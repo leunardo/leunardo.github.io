@@ -1,0 +1,38 @@
+article {
+    border: 1px solid var(--g2);
+    border-radius: var(--rounded-radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-top: 50px;
+}
+
+article:last-child {
+    margin-bottom: 50px;
+}
+
+article img.cover {
+    height: 300px;
+    object-fit: cover;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: start;
+    margin-inline-start: 10%;
+}
+
+h2 {
+    margin-block-end: .3em;
+}
+
+h2 + p {
+    margin-top: 0;
+}
